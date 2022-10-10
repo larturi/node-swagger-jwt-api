@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  pokedexdb: 
+    image: mongo:5.0.0
+    container_name: music-app-mongodb
+    restart: always
+    ports:
+      - 6000:27017
+    volumes:
+      - ./mongo:/data/db
