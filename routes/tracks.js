@@ -107,8 +107,61 @@ router.post(
   createItem
 );
 
+/**
+* @swagger
+* /tracks/{id}:
+*   put:
+*     summary: Edit a track
+*     security:
+*       - bearerAuth: []
+*     tags: [Track]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             $ref: '#/components/schemas/Track'
+*     parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: ID of the track to get
+*     responses:
+*       default:
+*         description: successful operation
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Track'
+*/
 router.put("/:id", authMiddleware, validateObjectDataUpdate, updateItem);
 
+/**
+* @swagger
+* /tracks/{id}:
+*   delete:
+*     summary: Delete a track
+*     security:
+*       - bearerAuth: []
+*     tags: [Track]
+*     parameters:
+*       - in: path
+*         name: id
+*         schema:
+*           type: string
+*         required: true
+*         description: ID of the track to delete
+*     responses:
+*       default:
+*         description: successful operation
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/Track'
+*/
 router.delete("/:id", authMiddleware, validateId, deleteItem);
 
 module.exports = router;
