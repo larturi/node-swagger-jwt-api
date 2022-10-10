@@ -31,7 +31,22 @@ const { validateRegister, validateLogin } = require("../validators/auth");
 *         name: John Smith
 *         age: 43
 *         email: jhon@mail.com
-*         password: 12345678
+*         password: "12345678"
+*     UserLogin:
+*       type: object
+*       properties:
+*         email:
+*           type: string
+*           description: The user email
+*         password:
+*           type: string
+*           description: The user password
+*       required:
+*         - email
+*         - password
+*       example:
+*         email: jhon@mail.com
+*         password: "12345678"
 */
 
 /**
@@ -57,6 +72,28 @@ const { validateRegister, validateLogin } = require("../validators/auth");
 */
 router.post("/register", validateRegister, registerCtrl);
 
+
+/**
+* @swagger
+* /auth/login:
+*   post:
+*     summary: User autentication
+*     tags: [User]
+*     requestBody:
+*       required: true
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             $ref: '#/components/schemas/UserLogin'
+*     responses:
+*       default:
+*         description: successful operation
+*         content:
+*           application/json:
+*             schema:
+*               $ref: '#/components/schemas/User'
+*/
 router.post("/login", validateLogin, loginCtrl);
 
 module.exports = router;
