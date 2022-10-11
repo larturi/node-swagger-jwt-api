@@ -1,5 +1,6 @@
+const stripAnsi = require('strip-ansi');
 const { IncomingWebhook } = require('@slack/webhook');
-const url = 'https://hooks.slack.com/services/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';
+const url = process.env.SLACK_WEBHOOK;
 const webhook = new IncomingWebhook(url);
 
 exports.loggerSlack = {

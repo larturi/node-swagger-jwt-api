@@ -12,7 +12,7 @@ const checkAuth = async (req, res, next) => {
     }
     const token = req.headers.authorization.split(" ").pop();
     const tokenData = await verifyToken(token);
-    console.log(tokenData);
+
     if (tokenData._id) {
       next();
     } else {
