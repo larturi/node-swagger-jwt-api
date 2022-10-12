@@ -1,11 +1,49 @@
 version: '3'
 
 services:
-  pokedexdb: 
+  mongodb: 
     image: mongo:5.0.0
-    container_name: music-app-mongodb
+    container_name: mongodb
     restart: always
     ports:
       - 6000:27017
     volumes:
       - ./mongo:/data/db
+
+  mysql:
+    build:
+      context: ./docker/mysql
+      args:
+        mysql_version: 8.0.26
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: music-mysql
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    restart: always
+
+  php:
+    build:
+      context: ./docker/php
+      args:
+        php_version: 8.0-apache
+    container_name: php
+    ports:
+      - "81:80"
+    volumes:
+      - ./www:/var/www/html
+    links:
+      - mysql
+
+  phpmyadmin-witworks:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    depends_on: 
+      - mysql
+    ports: 
+      - "82:80"
+    links: 
+      - mysql:db

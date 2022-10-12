@@ -40,9 +40,10 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
  */
 app.use("/api", require("./routes"));
 
-app.listen(port, () =>
+app.listen(port, () => {
   console.log(`Tu server esta listo por el puerto ${port}`)
-);
+  console.log(`\nhttp://localhost:3000/api-docs\n`)
+});
 
 /**
  * Define your database engine
