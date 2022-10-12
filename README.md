@@ -24,7 +24,7 @@
 npm install
 ```
 
-3. Levantar la base de datos mongo
+3. Levantar la base de datos mongo y la base mysql
 
 ```bash
 docker-compose up -d
