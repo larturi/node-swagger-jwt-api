@@ -35,7 +35,7 @@ services:
     links:
       - mysql
 
-  phpmyadmin-witworks:
+  phpmyadmin:
     image: phpmyadmin
     container_name: phpmyadmin
     restart: always
